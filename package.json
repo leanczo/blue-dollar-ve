@@ -1,8 +1,8 @@
 {
   "name": "blue-dollar",
   "displayName": "¿A cuánto están los verdes?",
-  "description": "This extension allows you see the price of the parallel dolar in Argentina",
-  "version": "0.0.2",
+  "description": "This extension allows you see the price of the parallel dollar in Argentina",
+  "version": "0.0.3",
   "icon": "images/logo.png",
   "publisher": "leanczo",
   "repository": {
@@ -23,7 +23,7 @@
     "commands": [
       {
         "command": "blue-dollar.updatePrices",
-        "title": "¿A cuánto están los verdes?"
+        "title": "¿A cuanto estan los verdes?"
       }
     ]
   },
