@@ -2,7 +2,7 @@
   "name": "blue-dollar",
   "displayName": "¿A cuánto están los verdes?",
   "description": "This extension allows you see the price of the parallel dollar in Argentina",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "icon": "images/logo.png",
   "publisher": "leanczo",
   "repository": {

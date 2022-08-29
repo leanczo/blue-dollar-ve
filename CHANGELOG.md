@@ -8,5 +8,6 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 - Initial release
 - Update readme file
+- fix duplicate status bar item
 
 ## [Unreleased]
