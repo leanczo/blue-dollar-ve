@@ -9,3 +9,6 @@ tsconfig.lsif.json
 node_modules/
 .vscode/
 .vscode-test/
+**/*.ts
+**/tsconfig.json
+!file.ts
