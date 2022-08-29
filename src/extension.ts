@@ -2,6 +2,7 @@
 // Import the module and reference it with the alias vscode in your code below
 import axios from "axios";
 import * as vscode from "vscode";
+import { StatusBarItem } from "vscode";
 import { xml2json } from "xml-js";
 
 // this method is called when your extension is activated
@@ -57,11 +58,18 @@ function format(value: any, decimalPlaces: any) {
 }
 
 function displayInStatusBar(context: vscode.ExtensionContext, valores: any) {
-  myStatusBarItem = vscode.window.createStatusBarItem(
-    vscode.StatusBarAlignment.Right,
-    100
-  );
-  myStatusBarItem.text = `$ ${valores.venta}`;
-  myStatusBarItem.show();
-  context.subscriptions.push(myStatusBarItem);
+  if (
+    !context.subscriptions.find(
+      (r) => (r as StatusBarItem).name === "sell-price"
+    )
+  ) {
+    myStatusBarItem = vscode.window.createStatusBarItem(
+      vscode.StatusBarAlignment.Right,
+      100
+    );
+    myStatusBarItem.name = "sell-price";
+    myStatusBarItem.text = `$ ${valores.venta}`;
+    myStatusBarItem.show();
+    context.subscriptions.push(myStatusBarItem);
+  }
 }
