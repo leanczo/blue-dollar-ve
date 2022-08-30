@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 - Initial release
 - Update readme file
-- fix duplicate status bar item
+- Fix duplicate status bar item
+- Run extension on start up
 
 ## [Unreleased]
