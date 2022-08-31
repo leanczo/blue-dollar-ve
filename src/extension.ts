@@ -1,12 +1,8 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 import axios from "axios";
 import * as vscode from "vscode";
 import { StatusBarItem } from "vscode";
 import { xml2json } from "xml-js";
 
-// this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
 let myStatusBarItem: vscode.StatusBarItem;
 
 export async function activate(context: vscode.ExtensionContext) {
@@ -15,12 +11,15 @@ export async function activate(context: vscode.ExtensionContext) {
 
   let disposable = vscode.commands.registerCommand(
     "blue-dollar.updatePrices",
-    () => {
+    async () => {
+      const values = await getValueDollarBlueArg();
+      displayInStatusBar(context, values);
       vscode.window.showInformationMessage(
         "Venta: $" + values?.venta + " Compra: $" + values?.compra
       );
     }
   );
+
   context.subscriptions.push(disposable);
   const schedule = require("node-schedule");
   schedule.scheduleJob("*/15 * * * *", async function () {
@@ -57,12 +56,22 @@ function format(value: any, decimalPlaces: any) {
     : "No cotiza";
 }
 
+function uniqueNumber(maxVal: number, numbersArray: number[]) {
+  const number = Math.floor(Math.random() * maxVal + 1);
+  if (!numbersArray.includes(number)) {
+    numbersArray.push(number);
+    return number;
+  } else if (numbersArray.length - 1 !== maxVal) {
+    uniqueNumber(maxVal, numbersArray);
+  }
+}
+
 function displayInStatusBar(context: vscode.ExtensionContext, valores: any) {
-  if (
-    !context.subscriptions.find(
-      (r) => (r as StatusBarItem).name === "sell-price"
-    )
-  ) {
+  var itemIndex = context.subscriptions.findIndex(
+    (r) => (r as StatusBarItem).name === "sell-price"
+  );
+
+  if (itemIndex === -1) {
     myStatusBarItem = vscode.window.createStatusBarItem(
       vscode.StatusBarAlignment.Right,
       100
@@ -71,5 +80,9 @@ function displayInStatusBar(context: vscode.ExtensionContext, valores: any) {
     myStatusBarItem.text = `$ ${valores.venta}`;
     myStatusBarItem.show();
     context.subscriptions.push(myStatusBarItem);
+  } else {
+    (
+      context.subscriptions[itemIndex] as vscode.StatusBarItem
+    ).text = `$ ${valores.venta}`;
   }
 }
