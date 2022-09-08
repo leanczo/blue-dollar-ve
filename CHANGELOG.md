@@ -9,6 +9,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Initial release
 - Update readme file
 - Fix duplicate status bar item
-- Run extension on start up
+- Add run extension on start up
+- Change data provider
+- Add arrows to know if the value goes up or down with respect to yesterday's values
 
 ## [Unreleased]
